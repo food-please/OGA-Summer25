@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://y3upgq7e07r3"]
 
 [ext_resource type="Script" uid="uid://chpa5kxn41u2t" path="res://src/main.gd" id="1_eewff"]
-[ext_resource type="Texture2D" uid="uid://lg43avr2vttw" path="res://grayscale.png" id="2_gh0ne"]
+[ext_resource type="Texture2D" uid="uid://lg43avr2vttw" path="res://src/overworld/grayscale.png" id="2_gh0ne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5q4o7"]
 texture = ExtResource("2_gh0ne")
