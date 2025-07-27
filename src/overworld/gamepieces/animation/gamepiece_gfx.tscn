@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg31aab7aapvw"]
+
+[ext_resource type="Script" uid="uid://c3th5beochh4i" path="res://src/overworld/gamepieces/animation/gamepiece_gfx.gd" id="1_2kqqc"]
+
+[node name="GamepieceGFX" type="CollisionShape2D"]
+script = ExtResource("1_2kqqc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,0 +1,6 @@
+extends Node
+
+## Emitted whenever the gameplay should be paused (for example, during a cutscene or dialog).
+## This generally means that controllers need to stop, changes to HP shouldn't happen, etc.
+@warning_ignore("unused_signal")
+signal gameplay_paused(pause: bool)
