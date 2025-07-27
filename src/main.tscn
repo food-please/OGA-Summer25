@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://y3upgq7e07r3"]
+[gd_scene load_steps=10 format=4 uid="uid://y3upgq7e07r3"]
 
 [ext_resource type="Script" uid="uid://chpa5kxn41u2t" path="res://src/main.gd" id="1_eewff"]
 [ext_resource type="Texture2D" uid="uid://lg43avr2vttw" path="res://src/overworld/grayscale.png" id="2_gh0ne"]
 [ext_resource type="Script" uid="uid://4vs5xarn2cqo" path="res://src/overworld/gamepieces/gamepiece.gd" id="3_5q4o7"]
 [ext_resource type="PackedScene" uid="uid://c6gglfr4dru1v" path="res://data/gamepieces/player/player_gfx.tscn" id="4_3cfgd"]
+[ext_resource type="Script" uid="uid://c606acxbegtga" path="res://src/overworld/scripted_events/interaction.gd" id="5_fyndt"]
+[ext_resource type="Script" uid="uid://do1r64s7dihbb" path="res://test_script.gd" id="6_kmhfv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5q4o7"]
 texture = ExtResource("2_gh0ne")
@@ -13,6 +15,8 @@ texture = ExtResource("2_gh0ne")
 
 [sub_resource type="TileSet" id="TileSet_3cfgd"]
 sources/0 = SubResource("TileSetAtlasSource_5q4o7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmhfv"]
 
 [node name="Main" type="Node2D"]
 scale = Vector2(4, 4)
@@ -28,3 +32,18 @@ position = Vector2(151.75, 111.5)
 script = ExtResource("3_5q4o7")
 max_speed = 320
 animation_scene = ExtResource("4_3cfgd")
+
+[node name="Interaction" type="Area2D" parent="." node_paths=PackedStringArray("event")]
+position = Vector2(78.25, 150.5)
+collision_layer = 524288
+collision_mask = 0
+monitoring = false
+script = ExtResource("5_fyndt")
+event = NodePath("Event")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+shape = SubResource("RectangleShape2D_kmhfv")
+
+[node name="Event" type="Node2D" parent="Interaction"]
+script = ExtResource("6_kmhfv")
