@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2pd7skx1xrw6"]
+
+[ext_resource type="Script" uid="uid://da7trea7vamrl" path="res://src/overworld/map/rooms/room_visualizer.gd" id="1_6udte"]
+[ext_resource type="Script" uid="uid://3rr0cwxlgrou" path="res://src/overworld/map/rooms/room.gd" id="1_qn81b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qn81b"]
+size = Vector2(304, 224)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_qn81b")
+
+[node name="Visualizer" type="Node2D" parent="."]
+script = ExtResource("1_6udte")
+draw_dimensions = Rect2(0, 0, 320, 240)
+
+[node name="CameraArea" type="Area2D" parent="."]
+position = Vector2(160, 120)
+collision_layer = 0
+collision_mask = 1024
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraArea"]
+shape = SubResource("RectangleShape2D_qn81b")

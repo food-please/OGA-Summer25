@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=4 uid="uid://y3upgq7e07r3"]
+[gd_scene load_steps=12 format=4 uid="uid://y3upgq7e07r3"]
 
 [ext_resource type="Script" uid="uid://chpa5kxn41u2t" path="res://src/main.gd" id="1_eewff"]
 [ext_resource type="Texture2D" uid="uid://lg43avr2vttw" path="res://src/overworld/grayscale.png" id="2_gh0ne"]
+[ext_resource type="PackedScene" uid="uid://d2pd7skx1xrw6" path="res://src/overworld/map/rooms/room.tscn" id="3_5mrjc"]
 [ext_resource type="Script" uid="uid://4vs5xarn2cqo" path="res://src/overworld/gamepieces/gamepiece.gd" id="3_5q4o7"]
 [ext_resource type="PackedScene" uid="uid://c6gglfr4dru1v" path="res://data/gamepieces/player/player_gfx.tscn" id="4_3cfgd"]
 [ext_resource type="Script" uid="uid://c606acxbegtga" path="res://src/overworld/scripted_events/interaction.gd" id="5_fyndt"]
 [ext_resource type="Script" uid="uid://do1r64s7dihbb" path="res://test_script.gd" id="6_kmhfv"]
+[ext_resource type="Script" uid="uid://c8y16i61xfjg0" path="res://src/overworld/player_camera.gd" id="7_rlaii"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5q4o7"]
 texture = ExtResource("2_gh0ne")
@@ -27,6 +29,10 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAOAAEAAAAAAAEAAAAOAAEAAAAAAAIAAAAOAAE
 tile_set = SubResource("TileSet_3cfgd")
 metadata/_edit_lock_ = true
 
+[node name="Room" parent="." instance=ExtResource("3_5mrjc")]
+room_width = 2
+room_height = 2
+
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(151.75, 111.5)
 script = ExtResource("3_5q4o7")
@@ -47,3 +53,8 @@ shape = SubResource("RectangleShape2D_kmhfv")
 
 [node name="Event" type="Node2D" parent="Interaction"]
 script = ExtResource("6_kmhfv")
+
+[node name="PlayerCamera" type="Node2D" parent="."]
+script = ExtResource("7_rlaii")
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCamera"]
