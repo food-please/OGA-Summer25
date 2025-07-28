@@ -8,3 +8,9 @@ signal gameplay_paused(pause: bool)
 ## Emitted whenever the player enters a new [Room].
 @warning_ignore("unused_signal")
 signal room_entered(room: Room)
+
+var is_paused: = false:
+	set(value):
+		if value != is_paused:
+			is_paused = value
+			gameplay_paused.emit(is_paused)

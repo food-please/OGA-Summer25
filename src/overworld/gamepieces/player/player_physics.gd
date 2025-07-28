@@ -23,11 +23,9 @@ func _ready() -> void:
 	OverworldEvents.gameplay_paused.connect(
 		func _on_gameplay_paused(is_paused: bool) -> void:
 			if is_paused:
-				print("Pause")
 				set_process_unhandled_input(false)
 			
 			elif not _interactions.is_empty():
-				print("Unpause")
 				set_process_unhandled_input.call_deferred(true)
 	)
 	

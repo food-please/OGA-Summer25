@@ -7,7 +7,8 @@ static var _is_cutscene_in_progress: = false:
 		if _is_cutscene_in_progress != value:
 			_is_cutscene_in_progress = value
 			
-			OverworldEvents.gameplay_paused.emit(value)
+			OverworldEvents.is_paused = value
+			#OverworldEvents.gameplay_paused.emit(value)
 
 
 ## Returns true if a cutscene is currently running.

@@ -41,6 +41,8 @@ func _give_control_to_player(gp: Gamepiece) -> void:
 	new_controller.owner = gamepiece
 	new_controller.name = "PlayerController"
 	
+	new_controller.is_active = !OverworldEvents.is_paused
+	
 	var new_physics_object: = PLAYER_PHYSICS_SCENE.instantiate()
 	gamepiece.add_child(new_physics_object)
 	new_physics_object.owner = gamepiece
@@ -53,4 +55,4 @@ func _give_control_to_ai(gp: Gamepiece) -> void:
 	
 	# Activate any AI controllers currently on the gamepiece.
 	for controller: GamepieceController in gp.find_children("*", "GamepieceController"):
-		controller.is_active = true
+		controller.is_active = !OverworldEvents.is_paused
