@@ -19,5 +19,5 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 
 func run() -> void:
-	if event != null and not ScriptedEvent.is_cutscene_in_progress():
+	if event != null and not OverworldEvents.is_paused():
 		event.run()

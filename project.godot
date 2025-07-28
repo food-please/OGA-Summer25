@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Player="*res://src/global/player.gd"
+CombatEvents="*res://src/global/events_combat.gd"
 OverworldEvents="*res://src/global/events_overworld.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 ScreenCover="*res://src/global/screen_fade/screen_fade.tscn"
