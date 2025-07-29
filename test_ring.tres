@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BattlerRing" load_steps=2 format=3 uid="uid://va0xpxpykodv"]
+
+[ext_resource type="Script" uid="uid://biarn5apfxadi" path="res://src/combat/arena/battler_ring.gd" id="1_vopu5"]
+
+[resource]
+script = ExtResource("1_vopu5")
+angle = 0.289073
+radius = 320.0
+scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://biarn5apfxadi"

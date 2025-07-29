@@ -1,19 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfh0akr1n3bib"]
+[gd_scene load_steps=5 format=3 uid="uid://bfh0akr1n3bib"]
 
 [ext_resource type="Script" uid="uid://0s1x7ed6iq03" path="res://src/combat/arena/combat_arena.gd" id="1_kk3e0"]
 [ext_resource type="Texture2D" uid="uid://j506wbo1lsde" path="res://data/battlegrounds/combat_back.png" id="2_kgprb"]
+[ext_resource type="Script" uid="uid://btjdo18witoex" path="res://src/combat/arena/combat_camera.gd" id="3_psolk"]
+[ext_resource type="Resource" uid="uid://va0xpxpykodv" path="res://test_ring.tres" id="4_rlyjt"]
 
 [node name="CombatArena" type="Node2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_kk3e0")
 
 [node name="Background" type="Parallax2D" parent="."]
+repeat_size = Vector2(1280, 0)
+repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-position = Vector2(320, 240)
 texture = ExtResource("2_kgprb")
 centered = false
 
+[node name="Sprite2D2" type="Sprite2D" parent="Background"]
+position = Vector2(640, 0)
+texture = ExtResource("2_kgprb")
+centered = false
+flip_h = true
+
 [node name="CombatCamera" type="Camera2D" parent="."]
-position = Vector2(640, 480)
-anchor_mode = 0
+position = Vector2(0, 240)
+script = ExtResource("3_psolk")
+battler_ring = ExtResource("4_rlyjt")
+background_width = 1280

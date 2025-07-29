@@ -2,6 +2,8 @@ extends CanvasLayer
 
 ## Emitted whenever the combat initation sequence has begun (start() has been called).
 signal started()
+
+## Emitted after combat has finished and the screen has faded.
 signal finished
 
 var _active_arena: CombatArena = null
@@ -36,11 +38,19 @@ func start(arena: PackedScene) -> void:
 	await ScreenCover.clear(0.2)
 
 
+func finish() -> void:
+	assert(_active_arena != null, "Attempting to end the combat but there's no active CombatArena!")
+	
+	await ScreenCover.cover(0.2)
+	
+	_active_arena.queue_free()
+	_active_arena = null
+	finished.emit()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
-		_active_arena.queue_free()
-		_active_arena = null
-		finished.emit()
+		finish()
 
 
 func is_combat_in_progress() -> bool:
