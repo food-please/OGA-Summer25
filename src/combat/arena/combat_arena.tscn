@@ -1,43 +1,65 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfh0akr1n3bib"]
+[gd_scene load_steps=9 format=3 uid="uid://bfh0akr1n3bib"]
 
 [ext_resource type="Script" uid="uid://0s1x7ed6iq03" path="res://src/combat/arena/combat_arena.gd" id="1_kk3e0"]
-[ext_resource type="Texture2D" uid="uid://j506wbo1lsde" path="res://data/battlegrounds/combat_back.png" id="2_kgprb"]
+[ext_resource type="Texture2D" uid="uid://cyv2d0e76fdy5" path="res://data/battlegrounds/back_far.png" id="2_dhnsf"]
+[ext_resource type="Texture2D" uid="uid://d1sa562efdrte" path="res://data/battlegrounds/back.png" id="3_5wgbd"]
 [ext_resource type="Script" uid="uid://btjdo18witoex" path="res://src/combat/arena/combat_camera.gd" id="3_psolk"]
 [ext_resource type="Resource" uid="uid://va0xpxpykodv" path="res://test_ring.tres" id="4_rlyjt"]
 [ext_resource type="Script" uid="uid://bjgid5x5goeu" path="res://src/combat/battlers/battler.gd" id="5_53g7x"]
 [ext_resource type="Texture2D" uid="uid://b4tnj2y7e4q1q" path="res://data/battlers/Monster #29 Front Normal Color Palette.png" id="6_3k548"]
+[ext_resource type="Texture2D" uid="uid://3f38n4uqoy1j" path="res://data/battlegrounds/back_near.png" id="8_tprjs"]
 
 [node name="CombatArena" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_kk3e0")
 
+[node name="BackgroundFar" type="Parallax2D" parent="."]
+scroll_scale = Vector2(-0.5, 1)
+repeat_size = Vector2(320, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundFar"]
+texture_repeat = 2
+texture = ExtResource("2_dhnsf")
+centered = false
+
 [node name="Background" type="Parallax2D" parent="."]
-scroll_scale = Vector2(-1, -1)
-repeat_size = Vector2(1280, 0)
+scroll_scale = Vector2(-1, 1)
+repeat_size = Vector2(320, 0)
 repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-texture_repeat = 3
-texture = ExtResource("2_kgprb")
+texture_repeat = 2
+texture = ExtResource("3_5wgbd")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 1280, 480)
+region_rect = Rect2(0, 0, 320, 240)
 
 [node name="CombatCamera" type="Camera2D" parent="."]
 anchor_mode = 0
 script = ExtResource("3_psolk")
 battler_ring = ExtResource("4_rlyjt")
-background_width = 1280
+background_width = 320
 
 [node name="Battlers" type="Node2D" parent="CombatCamera"]
-position = Vector2(320, 280)
+position = Vector2(160, 140)
 
 [node name="Node2D" type="Node2D" parent="CombatCamera/Battlers"]
-position = Vector2(239.983, -0.567092)
+position = Vector2(99.9488, -0.639889)
 script = ExtResource("5_53g7x")
 battler_ring = ExtResource("4_rlyjt")
-arena_position = Vector3(240, 0, 0)
+arena_position = Vector3(100, 0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="CombatCamera/Battlers/Node2D"]
-scale = Vector2(2, 2)
 texture = ExtResource("6_3k548")
 offset = Vector2(0, -16)
+
+[node name="BackgroundNear" type="Parallax2D" parent="."]
+scroll_scale = Vector2(2, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundNear"]
+texture_repeat = 2
+texture = ExtResource("8_tprjs")
+centered = false

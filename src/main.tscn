@@ -22,7 +22,7 @@ sources/0 = SubResource("TileSetAtlasSource_5q4o7")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmhfv"]
 
 [node name="Main" type="Node2D"]
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 script = ExtResource("1_eewff")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -37,7 +37,7 @@ room_height = 2
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(151.75, 111.5)
 script = ExtResource("3_5q4o7")
-max_speed = 320
+max_speed = 160
 animation_scene = ExtResource("4_3cfgd")
 
 [node name="Interaction" type="Area2D" parent="." node_paths=PackedStringArray("event")]

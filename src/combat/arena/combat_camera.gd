@@ -12,7 +12,7 @@ class_name CombatCamera extends Camera2D
 		if battler_ring:
 			battler_ring.angle_changed.connect(_on_battler_ring_angle_changed)
 
-@export var background_width: = 640*3
+@export var background_width: = 256*2
 
 
 # Displace the camera by a percentage of the background width (which is the maximum distance that
