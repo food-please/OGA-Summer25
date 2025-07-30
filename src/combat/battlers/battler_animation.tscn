@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtfoi25umho46"]
+
+[ext_resource type="Script" uid="uid://cnehmlcqw170a" path="res://src/combat/battlers/battler_animation.gd" id="1_ctaa0"]
+
+[node name="BattlerAnimation" type="Node2D"]
+script = ExtResource("1_ctaa0")
+current_track = "Idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+
+[node name="Height" type="Node2D" parent="."]
+
+[node name="Battler" type="Sprite2D" parent="Height"]

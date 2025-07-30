@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://btjdo18witoex" path="res://src/combat/arena/combat_camera.gd" id="3_psolk"]
 [ext_resource type="Resource" uid="uid://va0xpxpykodv" path="res://test_ring.tres" id="4_rlyjt"]
 [ext_resource type="Script" uid="uid://bjgid5x5goeu" path="res://src/combat/battlers/battler.gd" id="5_53g7x"]
-[ext_resource type="Texture2D" uid="uid://b4tnj2y7e4q1q" path="res://data/battlers/Monster #29 Front Normal Color Palette.png" id="6_3k548"]
+[ext_resource type="PackedScene" uid="uid://bordfe3dr74lp" path="res://data/battlers/kangaroo.tscn" id="7_dhnsf"]
 [ext_resource type="Texture2D" uid="uid://3f38n4uqoy1j" path="res://data/battlegrounds/back_near.png" id="8_tprjs"]
 
 [node name="CombatArena" type="Node2D"]
@@ -44,15 +44,23 @@ background_width = 320
 [node name="Battlers" type="Node2D" parent="CombatCamera"]
 position = Vector2(160, 140)
 
-[node name="Node2D" type="Node2D" parent="CombatCamera/Battlers"]
-position = Vector2(99.9488, -0.639889)
+[node name="Kangaroo" type="Node2D" parent="CombatCamera/Battlers"]
+position = Vector2(100, -10)
 script = ExtResource("5_53g7x")
 battler_ring = ExtResource("4_rlyjt")
-arena_position = Vector3(100, 0, 0)
+arena_position = Vector3(100, -50, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="CombatCamera/Battlers/Node2D"]
-texture = ExtResource("6_3k548")
-offset = Vector2(0, -16)
+[node name="BattlerAnimation" parent="CombatCamera/Battlers/Kangaroo" instance=ExtResource("7_dhnsf")]
+facing = 1
+
+[node name="Kangaroo2" type="Node2D" parent="CombatCamera/Battlers"]
+position = Vector2(-100, 10)
+script = ExtResource("5_53g7x")
+battler_ring = ExtResource("4_rlyjt")
+arena_position = Vector3(-100, 50, 0)
+
+[node name="BattlerAnimation" parent="CombatCamera/Battlers/Kangaroo2" instance=ExtResource("7_dhnsf")]
+facing = 3
 
 [node name="BackgroundNear" type="Parallax2D" parent="."]
 scroll_scale = Vector2(2, 1)

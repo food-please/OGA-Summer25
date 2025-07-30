@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://y3upgq7e07r3"]
+[gd_scene load_steps=12 format=4 uid="uid://y3upgq7e07r3"]
 
 [ext_resource type="Script" uid="uid://chpa5kxn41u2t" path="res://src/main.gd" id="1_eewff"]
 [ext_resource type="Texture2D" uid="uid://lg43avr2vttw" path="res://src/overworld/grayscale.png" id="2_gh0ne"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://c606acxbegtga" path="res://src/overworld/scripted_events/interaction.gd" id="5_fyndt"]
 [ext_resource type="Script" uid="uid://do1r64s7dihbb" path="res://test_script.gd" id="6_kmhfv"]
 [ext_resource type="Script" uid="uid://c8y16i61xfjg0" path="res://src/overworld/player_camera.gd" id="7_rlaii"]
-[ext_resource type="Script" uid="uid://bgsseeaeopm2t" path="res://src/combat/combat_container.gd" id="9_kf8lf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5q4o7"]
 texture = ExtResource("2_gh0ne")
@@ -63,4 +62,3 @@ script = ExtResource("7_rlaii")
 [node name="Overworld" type="CanvasLayer" parent="."]
 
 [node name="Combat" type="CanvasLayer" parent="."]
-script = ExtResource("9_kf8lf")

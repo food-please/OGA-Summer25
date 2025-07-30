@@ -13,6 +13,7 @@ func _ready() -> void:
 	# The combat state will be added directly over the Overworld, so it needs to render on top (yet
 	# below the ScreenFade).
 	get_parent().move_child.call_deferred(self, get_parent().get_child_count()-1)
+	follow_viewport_enabled = true
 
 
 ## Begin a combat. Takes a PackedScene as its only parameter, expecting it to be a CombatState object once

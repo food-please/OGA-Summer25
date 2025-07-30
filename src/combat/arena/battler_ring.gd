@@ -2,18 +2,12 @@
 class_name BattlerRing extends Resource
 
 signal angle_changed
-signal radius_changed(new_value: float)
 signal scale_changed
 
 @export var angle: = 0.0:
 	set(value):
 		angle = BattlerRing.clamp_angle(value)
 		angle_changed.emit()
-
-@export var radius: = 320.0:
-	set(value):
-		radius = value
-		radius_changed.emit(radius)
 
 @export var scale: = Vector2.ONE:
 	set(value):

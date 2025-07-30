@@ -38,7 +38,7 @@ class_name Battler extends Node2D
 ## an action, being whacked in the head, dying, etc.
 var rest_arena_position: Vector3
 
-#@onready var gfx: = $BattlerAnimation as BattlerAnimation
+@onready var gfx: = $BattlerAnimation as BattlerAnimation
 
 
 func melee_attack() -> void:
@@ -47,5 +47,5 @@ func melee_attack() -> void:
 
 func update_position() -> void:
 	position = battler_ring.Vector3_to_position(arena_position)
-	#gfx.height = -arena_position.z
-	#gfx.set_facing_from_position(position)
+	gfx.height = -arena_position.z
+	gfx.set_facing_from_position(position)

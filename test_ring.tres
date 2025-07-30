@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_vopu5")
-angle = 6.25119
+angle = 0.0
 radius = 320.33
 scale = Vector2(1, 0.2)
 metadata/_custom_type_script = "uid://biarn5apfxadi"
