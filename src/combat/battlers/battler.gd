@@ -1,4 +1,5 @@
 @tool
+@icon("icon_battler.png")
 class_name Battler extends Node2D
 
 @export var battler_ring: BattlerRing:

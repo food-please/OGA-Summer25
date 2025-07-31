@@ -153,7 +153,6 @@ _data = {
 }
 
 [node name="KangarooBattler" instance=ExtResource("1_2yyhh")]
-current_track = "Idle"
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
