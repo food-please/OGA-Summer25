@@ -4,7 +4,7 @@ extends CanvasLayer
 signal started()
 
 ## Emitted after combat has finished and the screen has faded.
-signal finished
+signal finished(post_combat_event: ScriptedEvent)
 
 var _active_arena: CombatArena = null
 
@@ -32,21 +32,31 @@ func start(arena: PackedScene) -> void:
 	started.emit()
 	await ScreenCover.cover(0.2)
 	
-	
+	# Once the screen is covered, add the combat arena and hand logic over to the arena object.
 	add_child(_active_arena)
+	#_active_arena.turn_queue.players_defeated.connect(
+		#func _on_players_defeated() -> void:
+			#print("Players lost!!!!"),
+		#CONNECT_ONE_SHOT
+	#)
+	#_active_arena.turn_queue.enemies_defeated.connect(
+		#func _on_players_defeated() -> void:
+			#print("Players won!!!!"),
+		#CONNECT_ONE_SHOT
+	#)
 	
-	_active_arena.camera.make_current()
-	await ScreenCover.clear(0.2)
+	_active_arena.screen_covered.connect(finish)
+	_active_arena.start()
 
 
 func finish() -> void:
 	assert(_active_arena != null, "Attempting to end the combat but there's no active CombatArena!")
 	
-	await ScreenCover.cover(0.2)
-	
 	_active_arena.queue_free()
 	_active_arena = null
-	finished.emit()
+	
+	# TODO: Pass along a post-combat ScriptedEvent here?
+	finished.emit(null)
 
 
 func _unhandled_input(event: InputEvent) -> void:

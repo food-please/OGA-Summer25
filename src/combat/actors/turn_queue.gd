@@ -1,8 +1,7 @@
 @icon("icon_turn_queue.png")
 class_name CombatTurnQueue extends Node
 
-signal players_defeated
-signal enemies_defeated
+signal finished(has_player_won: bool)
 
 
 func start() -> void:
@@ -53,12 +52,10 @@ func _next_turn() -> void:
 	
 	# Check for battle end conditions, that one side has been downed.
 	if _are_players_defeated():
-		print("Players lost")
-		players_defeated.emit.call_deferred()
+		finished.emit.call_deferred(false)
 		return
 	elif _are_enemies_defeated():
-		print("Enemies lost")
-		enemies_defeated.emit.call_deferred()
+		finished.emit.call_deferred(true)
 		return
 	
 	var actors: = get_actors()
@@ -74,7 +71,7 @@ func _next_turn() -> void:
 		# been caught by the checks to see which sides are defeated.
 		next_actor = get_next_actor()
 		if not next_actor:
-			players_defeated.emit()
+			finished.emit(false)
 			return
 	
 	# Connect to the actor's turn_finished signal. The actor is guaranteed to emit the signal, 

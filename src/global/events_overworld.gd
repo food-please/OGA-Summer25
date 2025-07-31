@@ -48,12 +48,17 @@ func _ready() -> void:
 	CombatEvents.started.connect(
 		func _on_combat_started() -> void: _is_paused = _should_overworld_be_paused())
 	CombatEvents.finished.connect(
-		func _on_combat_finished() -> void:
+		func _on_combat_finished(post_combat_event: ScriptedEvent) -> void:
+			# NOTE THAT POST COMBAT EVENTS BEGIN WITH THE SCREEN COVERED.
+			if post_combat_event != null:
+				post_combat_event.run()
+			
 			# If the event pool is empty, there are definitely no running events and the player can
 			# regain control.
 			# Otherwise, an event will continue.
 			if  _event_pool.is_empty():
 				await ScreenCover.clear(0.2)
+			
 			_is_paused = _should_overworld_be_paused()
 	)
 	
@@ -78,7 +83,7 @@ func is_paused() -> bool:
 func _should_overworld_be_paused() -> bool:
 	print("\nCheck")
 	if CombatEvents.is_combat_in_progress():
-		print("Coimbat happening")
+		print("Combat happening")
 		return true
 	
 	else:
