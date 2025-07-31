@@ -7,6 +7,9 @@ signal enemies_defeated
 
 func start() -> void:
 	_next_turn.call_deferred()
+	
+	await  get_tree().create_timer(5.0).timeout
+	$Kangaroo.queue_free()
 
 
 func get_actors() -> Array[Actor]:
@@ -32,7 +35,9 @@ func get_enemy_battlers() -> Array[Actor]:
 
 
 func get_next_actor() -> Actor:
-	var actors: = get_actors()
+	var actors: = get_actors().filter(
+		func _filter_acted_battlers(actor: Actor) -> bool: return not actor.has_acted_this_turn
+	)
 	if actors.is_empty():
 		return null
 	
@@ -44,6 +49,8 @@ func _sort_actors(a: Actor, b: Actor) -> bool:
 
 
 func _next_turn() -> void:
+	print("\nNext turn")
+	
 	# Check for battle end conditions, that one side has been downed.
 	if _are_players_defeated():
 		print("Players lost")
@@ -75,10 +82,10 @@ func _next_turn() -> void:
 	# However, we'll call_defer the next turn, since the current actor may have been downed on its
 	# turn and we need a frame to process the change.
 	next_actor.turn_finished.connect(
-		func _on_actor_turn_finished(actor: Actor) -> void:
-			actor.has_acted_this_turn = true
-			_next_turn.call_deferred(),
-		CONNECT_ONE_SHOT
+		(func _on_actor_turn_finished(actor: Actor) -> void: 
+				actor.has_acted_this_turn = true 
+				_next_turn.call_deferred()).bind(next_actor),
+			CONNECT_ONE_SHOT
 	)
 	next_actor.start_turn()
 

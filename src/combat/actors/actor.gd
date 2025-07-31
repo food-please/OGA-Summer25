@@ -21,11 +21,14 @@ func _ready() -> void:
 
 func start_turn() -> void:
 	print(get_parent().name, " starts their turn!")
+	
+	await get_tree().create_timer(1.5).timeout
+	turn_finished.emit()
 
 
 func _to_string() -> String:
 	var msg: = "%s (Actor, initiative: %f)" % [name, initiative]
-	if is_active:
+	if not is_active:
 		msg += " - INACTIVE"
 	elif has_acted_this_turn:
 		msg += " - HAS ACTED"
