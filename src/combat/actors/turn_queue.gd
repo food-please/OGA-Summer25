@@ -11,65 +11,65 @@ func start() -> void:
 	$Kangaroo.queue_free()
 
 
-func get_actors() -> Array[Actor]:
-	var actors: Array[Actor] = []
-	actors.assign(get_tree().get_nodes_in_group(Actor.GROUP))
-	
-	actors.sort_custom(_sort_actors)
-	return actors
-
-
-func get_player_battlers() -> Array[Actor]:
-	return get_actors().filter(
-		func _filter_players(actor: Actor):
-			return actor.is_player
-	)
-
-
-func get_enemy_battlers() -> Array[Actor]:
-	return get_actors().filter(
-		func _filter_players(actor: Actor):
-			return not actor.is_player
-	)
-
-
-func get_next_actor() -> Actor:
-	var actors: = get_actors().filter(
-		func _filter_acted_battlers(actor: Actor) -> bool: return not actor.has_acted_this_turn
-	)
-	if actors.is_empty():
-		return null
-	
-	return actors.front()
-
-
-func _sort_actors(a: Actor, b: Actor) -> bool:
-	return a.initiative >= b.initiative
+#func get_actors() -> Array[Actor]:
+	#var actors: Array[Actor] = []
+	#actors.assign(get_tree().get_nodes_in_group(Actor.GROUP))
+	#
+	#actors.sort_custom(_sort_actors)
+	#return actors
+#
+#
+#func get_player_battlers() -> Array[Actor]:
+	#return get_actors().filter(
+		#func _filter_players(actor: Actor):
+			#return actor.is_player
+	#)
+#
+#
+#func get_enemy_battlers() -> Array[Actor]:
+	#return get_actors().filter(
+		#func _filter_players(actor: Actor):
+			#return not actor.is_player
+	#)
+#
+#
+#func get_next_actor() -> Actor:
+	#var actors: = get_actors().filter(
+		#func _filter_acted_battlers(actor: Actor) -> bool: return not actor.has_acted_this_turn
+	#)
+	#if actors.is_empty():
+		#return null
+	#
+	#return actors.front()
+#
+#
+#func _sort_actors(a: Actor, b: Actor) -> bool:
+	#return a.initiative >= b.initiative
 
 
 func _next_turn() -> void:
 	print("\nNext turn")
 	
 	# Check for battle end conditions, that one side has been downed.
-	if _are_players_defeated():
+	if Combat.battlers.are_players_defeated():
 		finished.emit.call_deferred(false)
 		return
-	elif _are_enemies_defeated():
+	elif Combat.battlers.are_enemies_defeated():
 		finished.emit.call_deferred(true)
 		return
 	
-	var actors: = get_actors()
+	var battlers: = Combat.battlers.get_battlers()
 
 	# Check for an active actor. If there are none, it may be that the turn has finished and all
 	# actors can have their has_acted_this_turn flag reset.
-	var next_actor = get_next_actor()
+	var next_actor: = Combat.battlers.get_next_actor()
 	if not next_actor:
-		for actor in actors:
-			actor.has_acted_this_turn = false
+		for battler in battlers:
+			battler.actor.has_acted_this_turn = false
 		
 		# If there is no actor now, there is some kind of problem, since this scenario should have
 		# been caught by the checks to see which sides are defeated.
-		next_actor = get_next_actor()
+		next_actor = Combat.battlers.get_next_actor()
 		if not next_actor:
 			finished.emit(false)
 			return
@@ -87,26 +87,10 @@ func _next_turn() -> void:
 	next_actor.start_turn()
 
 
-func _are_players_defeated() -> bool:
-	for actor in get_player_battlers():
-		if actor.is_active:
-			return false
-	
-	return true
-
-
-func _are_enemies_defeated() -> bool:
-	for actor in get_enemy_battlers():
-		if actor.is_active:
-			return false
-	
-	return true
-
-
 func _to_string() -> String:
-	var actors: = get_actors()
+	var battlers: = Combat.battlers.get_battlers()
 	
 	var msg: = "\n%s (CombatTurnQueue)" % name
-	for actor in actors:
-		msg += "\n\t" + actor.to_string()
+	for battler in battlers:
+		msg += "\n\t" + battler.actor.to_string()
 	return msg

@@ -24,7 +24,7 @@ var _is_paused: = false:
 	set(value):
 		print("Setting pause to ", value)
 		# Note that the overworld may NOT be unpaused while combat is currently in progress.
-		if CombatEvents.is_combat_in_progress():
+		if Combat.is_combat_in_progress():
 			if value == false:
 				push_warning("Attempting to unpause the overworld while combat is in progress." + 
 					" OverworldEvents.is_paused will remain true.")
@@ -45,9 +45,9 @@ var _is_cutscene_in_progress: = false:
 func _ready() -> void:
 	# The combat state will be added directly over the Overworld, so it needs to render on top (yet
 	# below the ScreenFade).
-	CombatEvents.started.connect(
+	Combat.started.connect(
 		func _on_combat_started() -> void: _is_paused = _should_overworld_be_paused())
-	CombatEvents.finished.connect(
+	Combat.finished.connect(
 		func _on_combat_finished(post_combat_event: ScriptedEvent) -> void:
 			# NOTE THAT POST COMBAT EVENTS BEGIN WITH THE SCREEN COVERED.
 			if post_combat_event != null:
@@ -82,7 +82,7 @@ func is_paused() -> bool:
 
 func _should_overworld_be_paused() -> bool:
 	print("\nCheck")
-	if CombatEvents.is_combat_in_progress():
+	if Combat.is_combat_in_progress():
 		print("Combat happening")
 		return true
 	

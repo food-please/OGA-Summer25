@@ -49,6 +49,11 @@ func start() -> void:
 	$CombatCamera/TurnQueue/Kangaroo2.battler_ring = battler_ring
 	camera.battler_ring = battler_ring
 	
+	#TODO remove this and set player's via party
+	$CombatCamera/TurnQueue/Kangaroo.actor.is_player = true
+	$CombatCamera/TurnQueue/Kangaroo.actor.is_active = true
+	$CombatCamera/TurnQueue/Kangaroo2.actor.is_active = true
+	
 	await get_tree().create_timer(0.3).timeout
 	
 	await ScreenCover.clear(0.4)
@@ -61,6 +66,11 @@ func start() -> void:
 
 func _on_turn_queue_finished(player_victory: bool) -> void:
 	has_player_won = player_victory
+	
+	if has_player_won:
+		print("Player won!")
+	else:
+		print("Player lost...")
 	
 	await get_tree().create_timer(0.5).timeout
 	await ScreenCover.cover(0.2)

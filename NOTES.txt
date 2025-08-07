@@ -1,0 +1,18 @@
+Using the Airship14 palette: https://lospec.com/palette-list/airship-14
+
+PotentialAudio:
+	Wolfgang_
+	ZaneLittle
+	HydroGene
+	SubspaceAudio
+	ViktorKraus?
+	
+	CongusBongus, e.g. https://opengameart.org/content/new-thing-get
+
+Potential assets:
+	1 bit world: https://opengameart.org/content/slimy-adventure-unfinished
+	Chibi/Zelda style overworld: https://opengameart.org/content/rpg-asset-pack
+	Battlers: https://opengameart.org/content/tuxemon-set-1-154-monsters-front-and-back-sprites-and-menu-animations
+	SFX: https://opengameart.org/content/512-sound-effects-8-bit-style
+	UI SFX: opengameart.org/content/51-ui-sound-effects-buttons-switches-and-clicks
+	Levelup: https://opengameart.org/content/level-up-power-up-coin-get-13-sounds

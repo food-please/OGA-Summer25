@@ -6,5 +6,5 @@ func _execute() -> void:
 	DialogueManager.show_dialogue_balloon(load("res://test_dlg.dialogue"))
 	await DialogueManager.dialogue_ended
 	
-	CombatEvents.start(load("res://src/combat/arena/combat_arena.tscn"))
+	Combat.start(load("res://src/combat/arena/combat_arena.tscn"))
 	print("Done")

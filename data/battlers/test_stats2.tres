@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BattlerStats" load_steps=2 format=3 uid="uid://bwxt6myyekhvg"]
+
+[ext_resource type="Script" uid="uid://cdnb041eyyn2r" path="res://src/combat/battlers/battler_stats.gd" id="1_umceb"]
+
+[resource]
+script = ExtResource("1_umceb")
+initiative = 1.0
+metadata/_custom_type_script = "uid://cdnb041eyyn2r"

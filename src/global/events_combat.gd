@@ -6,6 +6,8 @@ signal started()
 ## Emitted after combat has finished and the screen has faded.
 signal finished(post_combat_event: ScriptedEvent)
 
+var battlers: BattlerList = null
+
 var _active_arena: CombatArena = null
 
 
@@ -46,6 +48,8 @@ func start(arena: PackedScene) -> void:
 	#)
 	
 	_active_arena.screen_covered.connect(finish)
+	
+	battlers = BattlerList.new(get_tree())
 	_active_arena.start()
 
 
@@ -55,6 +59,7 @@ func finish() -> void:
 	_active_arena.queue_free()
 	_active_arena = null
 	
+	battlers = null
 	# TODO: Pass along a post-combat ScriptedEvent here?
 	finished.emit(null)
 
