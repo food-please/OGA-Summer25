@@ -49,27 +49,26 @@ func start() -> void:
 
 func _next_turn() -> void:
 	print("\nNext turn")
+	var battlers: = Combat.get_battlers()
 	
 	# Check for battle end conditions, that one side has been downed.
-	if Combat.battlers.are_players_defeated():
+	if BattlerFilter.are_players_defeated(battlers):
 		finished.emit.call_deferred(false)
 		return
-	elif Combat.battlers.are_enemies_defeated():
+	elif BattlerFilter.are_enemies_defeated(battlers):
 		finished.emit.call_deferred(true)
 		return
 	
-	var battlers: = Combat.battlers.get_battlers()
-
 	# Check for an active actor. If there are none, it may be that the turn has finished and all
 	# actors can have their has_acted_this_turn flag reset.
-	var next_actor: = Combat.battlers.get_next_actor()
+	var next_actor: = BattlerFilter.get_next_actor(battlers)
 	if not next_actor:
 		for battler in battlers:
 			battler.actor.has_acted_this_turn = false
 		
 		# If there is no actor now, there is some kind of problem, since this scenario should have
 		# been caught by the checks to see which sides are defeated.
-		next_actor = Combat.battlers.get_next_actor()
+		next_actor = BattlerFilter.get_next_actor(battlers)
 		if not next_actor:
 			finished.emit(false)
 			return
@@ -88,7 +87,7 @@ func _next_turn() -> void:
 
 
 func _to_string() -> String:
-	var battlers: = Combat.battlers.get_battlers()
+	var battlers: = BattlerFilter.sort_by_initiative(Combat.get_battlers())
 	
 	var msg: = "\n%s (CombatTurnQueue)" % name
 	for battler in battlers:
