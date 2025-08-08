@@ -4,3 +4,4 @@
 
 [node name="DefaultActor" type="Node2D"]
 script = ExtResource("1_54rss")
+is_active = true

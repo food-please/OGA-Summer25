@@ -1,17 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfh0akr1n3bib"]
+[gd_scene load_steps=8 format=3 uid="uid://bfh0akr1n3bib"]
 
 [ext_resource type="Script" uid="uid://0s1x7ed6iq03" path="res://src/combat/arena/combat_arena.gd" id="1_kk3e0"]
 [ext_resource type="Texture2D" uid="uid://cyv2d0e76fdy5" path="res://data/battlegrounds/back_far.png" id="2_dhnsf"]
 [ext_resource type="Texture2D" uid="uid://d1sa562efdrte" path="res://data/battlegrounds/back.png" id="3_5wgbd"]
 [ext_resource type="Script" uid="uid://btjdo18witoex" path="res://src/combat/arena/combat_camera.gd" id="3_psolk"]
-[ext_resource type="Resource" uid="uid://va0xpxpykodv" path="res://test_ring.tres" id="4_rlyjt"]
-[ext_resource type="Script" uid="uid://bjgid5x5goeu" path="res://src/combat/battlers/battler.gd" id="5_53g7x"]
+[ext_resource type="Resource" uid="uid://va0xpxpykodv" path="res://debug/action_tests/test_ring.tres" id="4_rlyjt"]
 [ext_resource type="Script" uid="uid://cu20cueaiqyee" path="res://src/combat/actors/turn_queue.gd" id="6_tprjs"]
-[ext_resource type="PackedScene" uid="uid://bordfe3dr74lp" path="res://data/battlers/kangaroo.tscn" id="7_dhnsf"]
 [ext_resource type="Texture2D" uid="uid://3f38n4uqoy1j" path="res://data/battlegrounds/back_near.png" id="8_tprjs"]
-[ext_resource type="PackedScene" uid="uid://byen6y5g55d3" path="res://data/battlers/default_actor.tscn" id="9_6pmqk"]
-[ext_resource type="Resource" uid="uid://bwxt6myyekhvg" path="res://data/battlers/test_stats2.tres" id="10_xbrxw"]
-[ext_resource type="Resource" uid="uid://ciugiaqw7h6sc" path="res://data/battlers/test_stats.tres" id="12_g6taf"]
 
 [node name="CombatArena" type="Node2D"]
 scale = Vector2(2, 2)
@@ -49,24 +44,6 @@ background_width = 320
 unique_name_in_owner = true
 position = Vector2(160, 140)
 script = ExtResource("6_tprjs")
-
-[node name="Kangaroo" type="Node2D" parent="CombatCamera/TurnQueue"]
-position = Vector2(100, -10)
-script = ExtResource("5_53g7x")
-animation_scene = ExtResource("7_dhnsf")
-battler_ring = ExtResource("4_rlyjt")
-arena_position = Vector3(100, -50, 0)
-actor_scene = ExtResource("9_6pmqk")
-stats = ExtResource("10_xbrxw")
-
-[node name="Kangaroo2" type="Node2D" parent="CombatCamera/TurnQueue"]
-position = Vector2(-100, 10)
-script = ExtResource("5_53g7x")
-animation_scene = ExtResource("7_dhnsf")
-battler_ring = ExtResource("4_rlyjt")
-arena_position = Vector3(-100, 50, 0)
-actor_scene = ExtResource("9_6pmqk")
-stats = ExtResource("12_g6taf")
 
 [node name="BackgroundNear" type="Parallax2D" parent="."]
 scroll_scale = Vector2(2, 1)

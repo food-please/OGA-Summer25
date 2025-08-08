@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8rlsmsetmome"]
+
+[ext_resource type="Script" uid="uid://b7fwxbfgmgsri" path="res://debug/action_tests/action_test.gd" id="1_31h37"]
+
+[node name="ActionTest" type="Node2D"]
+script = ExtResource("1_31h37")

@@ -34,6 +34,7 @@ func start(arena: PackedScene) -> void:
 	
 	# Once the screen is covered, add the combat arena and hand logic over to the arena object.
 	add_child(_active_arena)
+	print("Does child have ring? ", _active_arena.battler_ring)
 	#_active_arena.turn_queue.players_defeated.connect(
 		#func _on_players_defeated() -> void:
 			#print("Players lost!!!!"),
@@ -67,6 +68,12 @@ func get_battlers() -> Array[Battler]:
 	battlers.assign(get_tree().get_nodes_in_group(Battler.GROUP))
 	
 	return battlers
+
+
+func get_battler_ring() -> BattlerRing:
+	if _active_arena != null:
+		return _active_arena.battler_ring
+	return null
 
 
 func _unhandled_input(event: InputEvent) -> void:

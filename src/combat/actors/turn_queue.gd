@@ -3,52 +3,21 @@ class_name CombatTurnQueue extends Node
 
 signal finished(has_player_won: bool)
 
+var turn_count = 0:
+	set(value):
+		turn_count = value
+		print("\nBegin turn %d" % turn_count)
+
 
 func start() -> void:
+	turn_count = 1
 	_next_turn.call_deferred()
 	
 	await  get_tree().create_timer(5.0).timeout
 	$Kangaroo.queue_free()
 
 
-#func get_actors() -> Array[Actor]:
-	#var actors: Array[Actor] = []
-	#actors.assign(get_tree().get_nodes_in_group(Actor.GROUP))
-	#
-	#actors.sort_custom(_sort_actors)
-	#return actors
-#
-#
-#func get_player_battlers() -> Array[Actor]:
-	#return get_actors().filter(
-		#func _filter_players(actor: Actor):
-			#return actor.is_player
-	#)
-#
-#
-#func get_enemy_battlers() -> Array[Actor]:
-	#return get_actors().filter(
-		#func _filter_players(actor: Actor):
-			#return not actor.is_player
-	#)
-#
-#
-#func get_next_actor() -> Actor:
-	#var actors: = get_actors().filter(
-		#func _filter_acted_battlers(actor: Actor) -> bool: return not actor.has_acted_this_turn
-	#)
-	#if actors.is_empty():
-		#return null
-	#
-	#return actors.front()
-#
-#
-#func _sort_actors(a: Actor, b: Actor) -> bool:
-	#return a.initiative >= b.initiative
-
-
 func _next_turn() -> void:
-	print("\nNext turn")
 	var battlers: = Combat.get_battlers()
 	
 	# Check for battle end conditions, that one side has been downed.
@@ -72,6 +41,8 @@ func _next_turn() -> void:
 		if not next_actor:
 			finished.emit(false)
 			return
+		
+		turn_count += 1
 	
 	# Connect to the actor's turn_finished signal. The actor is guaranteed to emit the signal, 
 	# even if it will be freed at the end of this frame.

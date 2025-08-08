@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://lhs6jewxakks"]
+
+[ext_resource type="PackedScene" uid="uid://bfh0akr1n3bib" path="res://src/combat/arena/combat_arena.tscn" id="1_4dalc"]
+[ext_resource type="Script" uid="uid://bjgid5x5goeu" path="res://src/combat/battlers/battler.gd" id="2_2cugj"]
+[ext_resource type="PackedScene" uid="uid://bordfe3dr74lp" path="res://data/battlers/kangaroo.tscn" id="3_2ydv8"]
+[ext_resource type="Resource" uid="uid://va0xpxpykodv" path="res://debug/action_tests/test_ring.tres" id="4_peroe"]
+[ext_resource type="PackedScene" uid="uid://byen6y5g55d3" path="res://data/battlers/default_actor.tscn" id="5_ys58b"]
+[ext_resource type="Resource" uid="uid://ciugiaqw7h6sc" path="res://data/battlers/test_stats.tres" id="6_mxvix"]
+[ext_resource type="Resource" uid="uid://bwxt6myyekhvg" path="res://data/battlers/test_stats2.tres" id="7_2ydv8"]
+
+[node name="TestCombatArena" instance=ExtResource("1_4dalc")]
+
+[node name="Kangaroo" type="Node2D" parent="CombatCamera/TurnQueue" index="0"]
+position = Vector2(-100, 20)
+script = ExtResource("2_2cugj")
+animation_scene = ExtResource("3_2ydv8")
+battler_ring = ExtResource("4_peroe")
+arena_position = Vector3(-100, 100, 0)
+actor_scene = ExtResource("5_ys58b")
+stats = ExtResource("6_mxvix")
+
+[node name="Kangaroo2" type="Node2D" parent="CombatCamera/TurnQueue" index="1"]
+position = Vector2(100, -20)
+script = ExtResource("2_2cugj")
+animation_scene = ExtResource("3_2ydv8")
+battler_ring = ExtResource("4_peroe")
+arena_position = Vector3(100, -100, 0)
+actor_scene = ExtResource("5_ys58b")
+stats = ExtResource("7_2ydv8")

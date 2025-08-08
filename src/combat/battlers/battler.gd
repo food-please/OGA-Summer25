@@ -71,6 +71,9 @@ func _ready() -> void:
 
 
 func update_position() -> void:
+	if battler_ring == null:
+		return
+	
 	position = battler_ring.Vector3_to_position(arena_position)
 	
 	if gfx:

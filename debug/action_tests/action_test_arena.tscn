@@ -1,0 +1,35 @@
+[gd_scene load_steps=10 format=3 uid="uid://bb0f3jn7e5m20"]
+
+[ext_resource type="PackedScene" uid="uid://bfh0akr1n3bib" path="res://src/combat/arena/combat_arena.tscn" id="1_1156u"]
+[ext_resource type="Script" uid="uid://wc8igdojxgct" path="res://debug/action_tests/action_test_arena.gd" id="2_lkisn"]
+[ext_resource type="Script" uid="uid://b6jjmd46ryal1" path="res://data/actions/action_attack.gd" id="3_c7rxy"]
+[ext_resource type="Script" uid="uid://bjgid5x5goeu" path="res://src/combat/battlers/battler.gd" id="3_nutr5"]
+[ext_resource type="PackedScene" uid="uid://bordfe3dr74lp" path="res://data/battlers/kangaroo.tscn" id="4_1fxbw"]
+[ext_resource type="Resource" uid="uid://va0xpxpykodv" path="res://debug/action_tests/test_ring.tres" id="5_1fxbw"]
+[ext_resource type="PackedScene" uid="uid://byen6y5g55d3" path="res://data/battlers/default_actor.tscn" id="5_c7rxy"]
+[ext_resource type="Resource" uid="uid://ciugiaqw7h6sc" path="res://data/battlers/test_stats.tres" id="6_58467"]
+[ext_resource type="Resource" uid="uid://bwxt6myyekhvg" path="res://data/battlers/test_stats2.tres" id="7_l5l8v"]
+
+[node name="ActionTestArena" node_paths=PackedStringArray("source_battler", "target_battlers") instance=ExtResource("1_1156u")]
+script = ExtResource("2_lkisn")
+source_battler = NodePath("CombatCamera/TurnQueue/Kangaroo")
+target_battlers = [NodePath("CombatCamera/TurnQueue/Kangaroo2")]
+test_action = ExtResource("3_c7rxy")
+
+[node name="Kangaroo" type="Node2D" parent="CombatCamera/TurnQueue" index="0"]
+position = Vector2(100, 0)
+script = ExtResource("3_nutr5")
+animation_scene = ExtResource("4_1fxbw")
+battler_ring = ExtResource("5_1fxbw")
+arena_position = Vector3(100, 0, 0)
+actor_scene = ExtResource("5_c7rxy")
+stats = ExtResource("6_58467")
+
+[node name="Kangaroo2" type="Node2D" parent="CombatCamera/TurnQueue" index="1"]
+position = Vector2(-100, 0)
+script = ExtResource("3_nutr5")
+animation_scene = ExtResource("4_1fxbw")
+battler_ring = ExtResource("5_1fxbw")
+arena_position = Vector3(-100, 0, 0)
+actor_scene = ExtResource("5_c7rxy")
+stats = ExtResource("7_l5l8v")

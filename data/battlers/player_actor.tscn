@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6gcq5iu5eoji"]
+
+[ext_resource type="Script" uid="uid://dixe4ix3hnp6r" path="res://src/combat/actors/actor.gd" id="1_wm7hh"]
+
+[node name="DefaultActor" type="Node2D"]
+script = ExtResource("1_wm7hh")
+is_player = true
+is_active = true

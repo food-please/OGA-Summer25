@@ -12,6 +12,12 @@ signal screen_covered
 
 var has_player_won: = false
 
+@onready var battler_ring: = BattlerRing.new()
+
+
+
+func _ready() -> void:
+	print("\n\nRing existss??? ", battler_ring)
 
 #func _ready() -> void:
 	#start()
@@ -41,18 +47,22 @@ var has_player_won: = false
 func start() -> void:
 	camera.make_current()
 	
-	var battler_ring: = BattlerRing.new()
+	#var battler_ring: = BattlerRing.new()
 	battler_ring.angle = 0.0
 	battler_ring.scale.y = 0.2
 	
-	$CombatCamera/TurnQueue/Kangaroo.battler_ring = battler_ring
-	$CombatCamera/TurnQueue/Kangaroo2.battler_ring = battler_ring
+	#$CombatCamera/TurnQueue/Kangaroo.battler_ring = battler_ring
+	#$CombatCamera/TurnQueue/Kangaroo2.battler_ring = battler_ring
 	camera.battler_ring = battler_ring
+	print("Look for Battlers")
+	for battler: Battler in find_children("*", "Battler"):
+		print("Found battler: %s" % battler.name)
+		battler.battler_ring = battler_ring
 	
 	#TODO remove this and set player's via party
-	$CombatCamera/TurnQueue/Kangaroo.actor.is_player = true
-	$CombatCamera/TurnQueue/Kangaroo.actor.is_active = true
-	$CombatCamera/TurnQueue/Kangaroo2.actor.is_active = true
+	#$CombatCamera/TurnQueue/Kangaroo.actor.is_player = true
+	#$CombatCamera/TurnQueue/Kangaroo.actor.is_active = true
+	#$CombatCamera/TurnQueue/Kangaroo2.actor.is_active = true
 	
 	await get_tree().create_timer(0.3).timeout
 	
